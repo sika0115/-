@@ -7,3 +7,4 @@ C:\Users\karin shoji\OneDrive - 独立行政法人 国立高等専門学校機�
 C:\Users\karin shoji\OneDrive - 独立行政法人 国立高等専門学校機構\ソフトウェア工学\WindowsFormsApp1\WindowsFormsApp1\obj\Debug\WindowsFormsApp1.csproj.CoreCompileInputs.cache
 C:\Users\karin shoji\OneDrive - 独立行政法人 国立高等専門学校機構\ソフトウェア工学\WindowsFormsApp1\WindowsFormsApp1\obj\Debug\WindowsFormsApp1.exe
 C:\Users\karin shoji\OneDrive - 独立行政法人 国立高等専門学校機構\ソフトウェア工学\WindowsFormsApp1\WindowsFormsApp1\obj\Debug\WindowsFormsApp1.pdb
+C:\Users\karin shoji\OneDrive - 独立行政法人 国立高等専門学校機構\ソフトウェア工学\WindowsFormsApp1\WindowsFormsApp1\obj\Debug\WindowsFormsApp1.csprojAssemblyReference.cache

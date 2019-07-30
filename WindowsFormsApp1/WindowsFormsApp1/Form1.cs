@@ -69,8 +69,8 @@ namespace WindowsFormsApp1
         }
 
         bool State = false;  //描画状態の制御
-        int x;
-        int y;
+        int drawx;
+        int drawy;
 
         private void Form1_Load(object sender, EventArgs e)
         {
@@ -79,8 +79,8 @@ namespace WindowsFormsApp1
         private void From1_MouseDowm(object sender, System.Windows.Forms.MouseEventArgs e)
         {
             State = true;
-            x = e.Location.X;
-            y = e.Location.Y;
+            drawx = e.Location.X;
+            drawy = e.Location.Y;
         }
 
         private void Form1_MouseUp(object sender, System.Windows.Forms.MouseEventArgs e)
@@ -92,12 +92,12 @@ namespace WindowsFormsApp1
         {
             if (State)
             {
-                Pen pen = new Pen(System.Drawing.Color.FromArgb(r,g,b), 9);
+                Pen pen = new Pen(System.Drawing.Color.Black, 9);/*FromArgb(r,g,b)*/
                 Graphics graphics = this.CreateGraphics();
-                graphics.DrawLine(pen, x, y, e.Location.X, e.Location.Y);
-                graphics.FillEllipse(Brushes.Black, x - pen.Width / 2, y - pen.Width / 2, pen.Width, pen.Width);
-                x = e.Location.X;
-                y = e.Location.Y;
+                graphics.DrawLine(pen, drawx, drawy, e.Location.X, e.Location.Y);
+                graphics.FillEllipse(Brushes.Black, drawx - pen.Width / 2, drawy - pen.Width / 2, pen.Width, pen.Width);
+                drawx = e.Location.X;
+                drawy = e.Location.Y;
                 pen.Dispose();
                 pen.Dispose();
             }
