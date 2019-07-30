@@ -7,65 +7,54 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using System.Drawing.Imaging;
+using System.IO;
+
 
 namespace WindowsFormsApp1
 {
     public partial class Form1 : Form
     {
-        static int r = 220;
-        static int g = 20;
-        static int b = 60;
         public Form1()
         {
             InitializeComponent();
             //ボタンの背景色設定
-            button1.BackColor = Color.FromArgb(220, 20, 60);
-            button2.BackColor = Color.FromArgb(219, 179, 20);
-            button3.BackColor = Color.FromArgb(60, 219, 20);
-            button4.BackColor = Color.FromArgb(20, 219, 179);
-            button5.BackColor = Color.FromArgb(20, 60, 219);
-            button6.BackColor = Color.FromArgb(179, 20, 219);
+            button1.BackColor = Color.Red;
+            button2.BackColor = Color.Green;
+            button3.BackColor = Color.Blue;
+            button4.BackColor = Color.Yellow;
+            button5.BackColor = Color.Violet;
+            button6.BackColor = Color.Magenta;
         }
 
+        int colorsave = 0;
         private void Button1_Click(object sender, EventArgs e)
         {
-            r = 220;
-            g = 20;
-            b = 60;
+            colorsave = 0;
         }
 
         private void Button2_Click(object sender, EventArgs e)
         {
-            r = 219;
-            g = 179;
-            b = 20;
+            colorsave = 1;
         }
 
         private void Button3_Click(object sender, EventArgs e)
         {
-            r = 60;
-            g = 219;
-            b = 20;
+            colorsave = 2;
         }
         private void Button4_Click(object sender, EventArgs e)
         {
-            r = 20;
-            g = 219;
-            b = 179;
+            colorsave = 3;
         }
 
         private void Button5_Click(object sender, EventArgs e)
         {
-            r = 20;
-            g = 60;
-            b = 219;
+            colorsave = 4;
         }
 
         private void Button6_Click(object sender, EventArgs e)
         {
-            r = 179;
-            g = 20;
-            b = 219;
+            colorsave = 5;
         }
 
         bool State = false;  //描画状態の制御
@@ -76,31 +65,93 @@ namespace WindowsFormsApp1
         {
 
         }
-        private void From1_MouseDowm(object sender, System.Windows.Forms.MouseEventArgs e)
+
+         private void PictureBox1_Click(object sender, EventArgs e)
+        {
+            State = true;
+        }
+
+        private void PictureBox1_MouseDowm(object sender, System.Windows.Forms.MouseEventArgs e)
         {
             State = true;
             drawx = e.Location.X;
             drawy = e.Location.Y;
         }
 
-        private void Form1_MouseUp(object sender, System.Windows.Forms.MouseEventArgs e)
+        private void PictureBox1_MouseUp(object sender, System.Windows.Forms.MouseEventArgs e)
         {
             State = false;
         }
 
-        private void From1_MouseMove(object sender, System.Windows.Forms.MouseEventArgs e)
+        private void PictureBox1_MouseMove(object sender, System.Windows.Forms.MouseEventArgs e)
         {
-            if (State)
+            if (State == true)
             {
-                Pen pen = new Pen(System.Drawing.Color.Black, 9);/*FromArgb(r,g,b)*/
-                Graphics graphics = this.CreateGraphics();
-                graphics.DrawLine(pen, drawx, drawy, e.Location.X, e.Location.Y);
-                graphics.FillEllipse(Brushes.Black, drawx - pen.Width / 2, drawy - pen.Width / 2, pen.Width, pen.Width);
-                drawx = e.Location.X;
-                drawy = e.Location.Y;
-                pen.Dispose();
-                pen.Dispose();
+                if (colorsave == 0)
+                {
+                    Pen pen = new Pen(System.Drawing.Color.Red, 9);
+                    Graphics graphics = this.CreateGraphics();
+                    graphics.DrawLine(pen, drawx, drawy, e.Location.X, e.Location.Y);
+                    graphics.FillEllipse(System.Drawing.Brushes.Red, drawx - pen.Width / 2, drawy - pen.Width / 2, pen.Width, pen.Width);
+                    drawx = e.Location.X;
+                    drawy = e.Location.Y;
+                    pen.Dispose();
+                }
+                if (colorsave == 1)
+                {
+                    Pen pen = new Pen(System.Drawing.Color.Green, 9);
+                    Graphics graphics = this.CreateGraphics();
+                    graphics.DrawLine(pen, drawx, drawy, e.Location.X, e.Location.Y);
+                    graphics.FillEllipse(System.Drawing.Brushes.Green, drawx - pen.Width / 2, drawy - pen.Width / 2, pen.Width, pen.Width);
+                    drawx = e.Location.X;
+                    drawy = e.Location.Y;
+                    pen.Dispose();
+                }
+                if (colorsave == 2)
+                {
+                    Pen pen = new Pen(System.Drawing.Color.Blue, 9);
+                    Graphics graphics = this.CreateGraphics();
+                    graphics.DrawLine(pen, drawx, drawy, e.Location.X, e.Location.Y);
+                    graphics.FillEllipse(System.Drawing.Brushes.Blue, drawx - pen.Width / 2, drawy - pen.Width / 2, pen.Width, pen.Width);
+                    drawx = e.Location.X;
+                    drawy = e.Location.Y;
+                    pen.Dispose();
+                }
+                if (colorsave == 3)
+                {
+                    Pen pen = new Pen(System.Drawing.Color.Yellow, 9);
+                    Graphics graphics = this.CreateGraphics();
+                    graphics.DrawLine(pen, drawx, drawy, e.Location.X, e.Location.Y);
+                    graphics.FillEllipse(System.Drawing.Brushes.Yellow, drawx - pen.Width / 2, drawy - pen.Width / 2, pen.Width, pen.Width);
+                    drawx = e.Location.X;
+                    drawy = e.Location.Y;
+                    pen.Dispose();
+                }
+                if (colorsave == 4)
+                {
+                    Pen pen = new Pen(System.Drawing.Color.Violet, 9);
+                    Graphics graphics = this.CreateGraphics();
+                    graphics.DrawLine(pen, drawx, drawy, e.Location.X, e.Location.Y);
+                    graphics.FillEllipse(System.Drawing.Brushes.Violet, drawx - pen.Width / 2, drawy - pen.Width / 2, pen.Width, pen.Width);
+                    drawx = e.Location.X;
+                    drawy = e.Location.Y;
+                    pen.Dispose();
+                }
+                if (colorsave == 5)
+                {
+                    Pen pen = new Pen(System.Drawing.Color.Magenta, 9);
+                    Graphics graphics = this.CreateGraphics();
+                    graphics.DrawLine(pen, drawx, drawy, e.Location.X, e.Location.Y);
+                    graphics.FillEllipse(System.Drawing.Brushes.Magenta, drawx - pen.Width / 2, drawy - pen.Width / 2, pen.Width, pen.Width);
+                    drawx = e.Location.X;
+                    drawy = e.Location.Y;
+                    pen.Dispose();
+                }
+
+
+
             }
         }
+
     }
 }
