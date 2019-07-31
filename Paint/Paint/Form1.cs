@@ -12,11 +12,6 @@ namespace Paint
 {
     public partial class Form1 : Form
     {
-        float x1;
-        float y1;
-        float x2;
-        float y2;
-
         public Form1()
         {
             InitializeComponent();
@@ -27,55 +22,74 @@ namespace Paint
             button4.BackColor = Color.Yellow;
             button5.BackColor = Color.Magenta;
         }
-        Pen pen = new Pen(Color.Black, 4);
-
-        private void Button1_Click(object sender, EventArgs e)
+        private void Form1_Load(object sender, EventArgs e)
         {
-            pen = new Pen(Color.Black, 4);
+            bit1 = new Bitmap(pic.Width,pic.Height);
+        }
+        bool drawstate = false;
+        Point locationo = new Point();
+        Color colorp = Color.Black;
+
+        Bitmap bit1 = null;
+
+        private void pic_MouseDown(object sender, MouseEventArgs e)
+        {
+            locationo = e.Location;
+            drawstate = true;
+        }
+
+        private void pic_MouseMove(object sender, MouseEventArgs e)
+        {
+            if (drawstate == false)
+            {
+                return;
+            }
+
+            Pen pen = new Pen(colorp, 3);
+
+            using (Graphics g = Graphics.FromImage(bit1))
+            {
+                g.DrawLine(pen, locationo, e.Location);
+            }
+            pic.Image = bit1;
+            locationo = e.Location;
+        }
+
+        private void pic_MouseUp(object sender, MouseEventArgs e)
+        {
+            drawstate = false;
+         }
+
+        private void Button1_Click_1(object sender, EventArgs e)
+        {
+            colorp = Color.Black;
         }
 
         private void Button7_Click(object sender, EventArgs e)
         {
-            pen = new Pen(Color.Red, 4);
+            colorp = Color.Red;
         }
 
         private void Button6_Click(object sender, EventArgs e)
         {
-            pen = new Pen(Color.Blue, 4);
-        }
-
-        private void Button2_Click(object sender, EventArgs e)
-        {
-            pen = new Pen(Color.Green, 4);
+            colorp = Color.Blue;
         }
 
         private void Button4_Click(object sender, EventArgs e)
         {
-            pen = new Pen(Color.Yellow, 4);
+            colorp = Color.Yellow;
+        }
 
+        private void Button2_Click(object sender, EventArgs e)
+        {
+            colorp = Color.Green;
         }
 
         private void Button5_Click(object sender, EventArgs e)
         {
-            pen = new Pen(Color.Magenta, 4);
-        }
-        private void PictureBox1_MouseDown(object sender, System.Windows.Forms.MouseEventArgs e)
-        {
-            x1 = System.Windows.Forms.Cursor.Position.X;//最初のX座標取得
-            y1 = System.Windows.Forms.Cursor.Position.Y;//最初のY座標取得
-        }
-        private void PictureBox1_MouseUp(object sender, System.Windows.Forms.MouseEventArgs e) 
-        {
-            x2 = System.Windows.Forms.Cursor.Position.X;//離したところのX座標取得
-            y2 = System.Windows.Forms.Cursor.Position.Y;//離したところのY座標取得
-
-            Graphics g = this.CreateGraphics();
-            PointF p1 = new PointF(x1, y1);
-            PointF p2 = new PointF(x2, y2);
-            g.DrawLine(pen, p1, p2);
-
-
-
+            colorp = Color.Magenta;
         }
     }
 }
+
+
